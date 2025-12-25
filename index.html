@@ -489,12 +489,16 @@ if (subjectIdFromUrl) {
       answers[key] = Number(value);
     }
 
-    const payload = {
-      subject_id: document.getElementById("subject_id").value,
-      input_start_time: inputStartTime,
-      submit_time: submitTime,
-      answers: answers
-    };
+ const payload = {
+  timestamp_st: inputStartTime,
+  timestamp_fin: submitTime,
+  id: document.getElementById("subject_id").value,
+  rest_time: document.getElementById("rest_time").value,
+  wake_time: document.getElementById("wake_time").value,
+  sleep_time: document.getElementById("sleep_time").value,
+  answers: answers
+};
+
 
     console.log(payload);
 
@@ -522,5 +526,6 @@ fetch("https://script.google.com/macros/s/AKfycbyz3WYbRfKYcE3Nx_H-ziP-e305G0-jdS
 
 </body>
 </html>
+
 
 
