@@ -509,9 +509,7 @@ for (const [key, value] of formData.entries()) {
 
 fetch("https://script.google.com/macros/s/AKfycbw97OhdI1FhXpwAWW_R5po_OBaRlB5jYkZ9Ao_QGMC1ncSp38-phhFYVV_klJiFdTZYBg/exec", {
   method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
+  
   body: JSON.stringify(payload)
 })
 .then(response => response.text())
@@ -529,6 +527,7 @@ fetch("https://script.google.com/macros/s/AKfycbw97OhdI1FhXpwAWW_R5po_OBaRlB5jYk
 
 </body>
 </html>
+
 
 
 
