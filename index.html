@@ -485,9 +485,12 @@ if (subjectIdFromUrl) {
 
     const formData = new FormData(e.target);
     const answers = {};
-    for (const [key, value] of formData.entries()) {
-      answers[key] = Number(value);
-    }
+for (const [key, value] of formData.entries()) {
+  if (key.startsWith("q")) {
+    answers[key] = Number(value);
+  }
+}
+
 
  const payload = {
   timestamp_st: inputStartTime,
@@ -526,6 +529,7 @@ fetch("https://script.google.com/macros/s/AKfycbw97OhdI1FhXpwAWW_R5po_OBaRlB5jYk
 
 </body>
 </html>
+
 
 
 
