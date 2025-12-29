@@ -476,72 +476,65 @@ if (subjectIdFromUrl) {
 }
 
 
-  // UTC → 東京時間の文字列に変換する関数
+// UTC → 東京時間に変換する関数（ブラウザ用）
 function toTokyoTimeString(date) {
-  // タイムゾーンをAsia/Tokyoにしてフォーマット
-  return Utilities.formatDate(date, "Asia/Tokyo", "yyyy-MM-dd HH:mm:ss");
+  const tokyoTime = new Date(date.getTime() + 9*60*60*1000); // +9時間
+  // YYYY-MM-DD HH:MM:SS 形式に整形
+  const yyyy = tokyoTime.getFullYear();
+  const mm = String(tokyoTime.getMonth()+1).padStart(2,'0');
+  const dd = String(tokyoTime.getDate()).padStart(2,'0');
+  const hh = String(tokyoTime.getHours()).padStart(2,'0');
+  const min = String(tokyoTime.getMinutes()).padStart(2,'0');
+  const ss = String(tokyoTime.getSeconds()).padStart(2,'0');
+  return `${yyyy}-${mm}-${dd} ${hh}:${min}:${ss}`;
 }
 
 // 入力開始時刻
-const inputStartTime = (() => {
-  const d = new Date();
-  const utc = d.getTime() + d.getTimezoneOffset() * 60000; // UTCに変換
-  const tokyo = new Date(utc + 9 * 60 * 60 * 1000);       // UTC+9
-  return tokyo.toISOString().slice(0,19).replace("T"," "); // yyyy-mm-dd hh:mm:ss
-})();
+const inputStartTime = toTokyoTimeString(new Date());
 
+document.getElementById("osaForm").addEventListener("submit", function(e) {
+  e.preventDefault();
 
-  document.getElementById("osaForm").addEventListener("submit", function(e) {
-    e.preventDefault();
+  const submitTime = toTokyoTimeString(new Date());
 
-    const submitTime = (() => {
-  const d = new Date();
-  const utc = d.getTime() + d.getTimezoneOffset() * 60000;
-  const tokyo = new Date(utc + 9 * 60 * 60 * 1000);
-  return tokyo.toISOString().slice(0,19).replace("T"," ");
-})();
-
-
-    const formData = new FormData(e.target);
-    const answers = {};
-for (const [key, value] of formData.entries()) {
-  if (key.startsWith("q")) {
-    answers[key] = Number(value);
+  const formData = new FormData(e.target);
+  const answers = {};
+  for (const [key, value] of formData.entries()) {
+    if (key.startsWith("q")) {
+      answers[key] = Number(value);
+    }
   }
-}
 
+  const payload = {
+    timestamp_st: inputStartTime,
+    timestamp_fin: submitTime,
+    id: document.getElementById("subject_id").value,
+    rest_time: document.getElementById("rest_time").value,
+    wake_time: document.getElementById("wake_time").value,
+    sleep_time: document.getElementById("sleep_time").value,
+    answers: answers
+  };
 
- const payload = {
-  timestamp_st: inputStartTime,
-  timestamp_fin: submitTime,
-  id: document.getElementById("subject_id").value,
-  rest_time: document.getElementById("rest_time").value,
-  wake_time: document.getElementById("wake_time").value,
-  sleep_time: document.getElementById("sleep_time").value,
-  answers: answers
-};
+  console.log(payload);
 
-
-
-
-    console.log(payload);
-
-fetch("https://script.google.com/macros/s/AKfycbx6140na6GYyoIBe-2Inw_a9RI87gfsMbpJiPO0aUgZFPsQneMKCZTE_PdHogPXejhFVw/exec", {
-  method: "POST",
-  mode: "no-cors",
-  headers: {
-    "Content-Type": "text/plain;charset=utf-8"
-  },
-  body: JSON.stringify(payload)
-})
-.then(() => {
-  alert("送信が完了しました");
-  window.location.href = "https://202590-50-mgc001-hqlc.glide.page";
-})
-.catch(error => {
-  alert("送信に失敗しました");
-  console.error(error);
+  fetch("https://script.google.com/macros/s/AKfycbx6140na6GYyoIBe-2Inw_a9RI87gfsMbpJiPO0aUgZFPsQneMKCZTE_PdHogPXejhFVw/exec", {
+    method: "POST",
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8"
+    },
+    body: JSON.stringify(payload)
+  })
+  .then(() => {
+    alert("送信が完了しました");
+    window.location.href = "https://202590-50-mgc001-hqlc.glide.page";
+  })
+  .catch(error => {
+    alert("送信に失敗しました");
+    console.error(error);
+  });
 });
+
 
 
 
@@ -550,6 +543,7 @@ fetch("https://script.google.com/macros/s/AKfycbx6140na6GYyoIBe-2Inw_a9RI87gfsMb
 
 </body>
 </html>
+
 
 
 
