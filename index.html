@@ -476,12 +476,31 @@ if (subjectIdFromUrl) {
 }
 
 
-  const inputStartTime = new Date().toISOString();
+  // UTC → 東京時間の文字列に変換する関数
+function toTokyoTimeString(date) {
+  // タイムゾーンをAsia/Tokyoにしてフォーマット
+  return Utilities.formatDate(date, "Asia/Tokyo", "yyyy-MM-dd HH:mm:ss");
+}
+
+// 入力開始時刻
+const inputStartTime = (() => {
+  const d = new Date();
+  const utc = d.getTime() + d.getTimezoneOffset() * 60000; // UTCに変換
+  const tokyo = new Date(utc + 9 * 60 * 60 * 1000);       // UTC+9
+  return tokyo.toISOString().slice(0,19).replace("T"," "); // yyyy-mm-dd hh:mm:ss
+})();
+
 
   document.getElementById("osaForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
-    const submitTime = new Date().toISOString();
+    const submitTime = (() => {
+  const d = new Date();
+  const utc = d.getTime() + d.getTimezoneOffset() * 60000;
+  const tokyo = new Date(utc + 9 * 60 * 60 * 1000);
+  return tokyo.toISOString().slice(0,19).replace("T"," ");
+})();
+
 
     const formData = new FormData(e.target);
     const answers = {};
@@ -531,6 +550,7 @@ fetch("https://script.google.com/macros/s/AKfycbx6140na6GYyoIBe-2Inw_a9RI87gfsMb
 
 </body>
 </html>
+
 
 
 
