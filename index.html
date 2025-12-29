@@ -509,9 +509,12 @@ for (const [key, value] of formData.entries()) {
 
 fetch("https://script.google.com/macros/s/AKfycbx6140na6GYyoIBe-2Inw_a9RI87gfsMbpJiPO0aUgZFPsQneMKCZTE_PdHogPXejhFVw/exec", {
   method: "POST",
-  
+  headers: {
+    "Content-Type": "application/json"
+  },
   body: JSON.stringify(payload)
 })
+
 .then(response => response.text())
 .then(result => {
   alert("送信が完了しました");
@@ -528,6 +531,7 @@ fetch("https://script.google.com/macros/s/AKfycbx6140na6GYyoIBe-2Inw_a9RI87gfsMb
 
 </body>
 </html>
+
 
 
 
