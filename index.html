@@ -509,16 +509,14 @@ for (const [key, value] of formData.entries()) {
 
 fetch("https://script.google.com/macros/s/AKfycbx6140na6GYyoIBe-2Inw_a9RI87gfsMbpJiPO0aUgZFPsQneMKCZTE_PdHogPXejhFVw/exec", {
   method: "POST",
+  mode: "no-cors",
   headers: {
     "Content-Type": "application/json"
   },
   body: JSON.stringify(payload)
 })
-
-.then(response => response.text())
-.then(result => {
+.then(() => {
   alert("送信が完了しました");
-  console.log(result);
   window.location.href = "https://202590-50-mgc001-hqlc.glide.page";
 })
 .catch(error => {
@@ -526,11 +524,13 @@ fetch("https://script.google.com/macros/s/AKfycbx6140na6GYyoIBe-2Inw_a9RI87gfsMb
   console.error(error);
 });
 
+
   });
 </script>
 
 </body>
 </html>
+
 
 
 
