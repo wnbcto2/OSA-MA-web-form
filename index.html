@@ -462,19 +462,19 @@ tbody tr:last-child {
 
 <script>
 // ===== URLパラメータから被験者IDを取得 =====
-  document.addEventListener("DOMContentLoaded", function () {
-function getQueryParam(name) {
-  const params = new URLSearchParams(window.location.search);
-  return params.get(name);
-}
+document.addEventListener("DOMContentLoaded", function () {
+  function getQueryParam(name) {
+    const params = new URLSearchParams(window.location.search);
+    return params.get(name);
+  }
 
-const subjectIdFromUrl = getQueryParam("sid");
+  const subjectIdFromUrl = getQueryParam("sid");
 
-if (subjectIdFromUrl) {
-  const subjectInput = document.getElementById("subject_id");
-  subjectInput.value = subjectIdFromUrl;
-  subjectInput.readOnly = true;
-}
+  if (subjectIdFromUrl) {
+    const subjectInput = document.getElementById("subject_id");
+    subjectInput.value = subjectIdFromUrl;
+    subjectInput.readOnly = true;
+  }
 }
 
 // UTC → 東京時間に変換する関数（ブラウザ用）
@@ -544,6 +544,7 @@ document.getElementById("osaForm").addEventListener("submit", function(e) {
 
 </body>
 </html>
+
 
 
 
