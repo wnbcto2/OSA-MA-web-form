@@ -50,44 +50,442 @@ tbody tr:last-child { border-bottom: none; }
 
 <form id="osaForm">
 
-<p>朝，目覚めたらすぐに入力して下さい</p>
+<div class="instruction-block">
 
-<label>就床時刻：
-<input type="time" id="rest_time" required></label><br>
+  <p class="instruction-main">
+    朝，目覚めたらすぐに入力して下さい
+  </p>
 
-<label>起床時刻：
-<input type="time" id="wake_time" required></label><br>
+  <p class="instruction-sub">
+    この調査票は，あなたの睡眠の状態についてお聞きするものです．
 
-<label>睡眠時間：
-<input type="time" id="sleep_time" required></label><br><br>
+  </p>
+
+  <div class="time-input">
+    <label for="rest_time">昨夜，おやすみになった時刻※24時間表記：</label>
+    <input type="time" id="rest_time" name="rest_time" required>
+  </div>
+
+  <div class="time-input">
+    <label for="wake_time">今朝，目覚めた時刻※24時間表記：</label>
+    <input type="time" id="wake_time" name="wake_time" required>
+  </div>
+
+  <div class="time-input">
+    <label for="sleep_time">昨夜の睡眠時間：</label>
+    <input type="time" id="sleep_time" name="sleep_time" required>
+  </div>
+
+</div>
+
 
 <table>
-<thead>
-<tr>
-<th></th>
-<th class="scale">非常に</th>
-<th class="scale">やや</th>
-<th class="scale">やや</th>
-<th class="scale">非常に</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
 
-<tr>
-<td class="left-label">疲れが残っている</td>
-<td><input type="radio" name="q1" value="1" required></td>
-<td><input type="radio" name="q1" value="2"></td>
-<td><input type="radio" name="q1" value="3"></td>
-<td><input type="radio" name="q1" value="4"></td>
-<td class="right-label">疲れがとれている</td>
-</tr>
+    <p class="instruction-sub">
+    昨夜の睡眠の状態や現在の心身の状態についてお聞きします．<br>
+    あなたの状態にあてはまる箇所にチェックを入れて下さい．
 
-<tr>
-<td class="left-label">集中力がある</td>
-<td><input type="radio" name="q2" value="
+  </p>
 
+  <!-- 尺度ヘッダー（1回だけ） -->
+  <thead>
+    <tr>
+      <th></th>
+      <th class="scale">非常に</th>
+      <th class="scale">やや</th>
+      <th class="scale">やや</th>
+      <th class="scale">非常に</th>
+      <th></th>
+    </tr>
+  </thead>
 
+  <tbody>
+
+    <!-- Q1 -->
+    <tr>
+
+      <td class="left-label">疲れが残っている</td>
+
+      <td class="choice">
+        <input type="radio" name="q1" value="1" required>
+      </td>
+      <td class="choice">
+        <input type="radio" name="q1" value="2">
+      </td>
+      <td class="choice">
+        <input type="radio" name="q1" value="3">
+      </td>
+      <td class="choice">
+        <input type="radio" name="q1" value="4">
+      </td>
+
+      <td class="right-label">疲れがとれている</td>
+    </tr>
+
+    <!-- Q2 -->
+    <tr>
+      <td class="left-label">集中力がある</td>
+
+      <td class="choice">
+        <input type="radio" name="q2" value="1" required>
+      </td>
+      <td class="choice">
+        <input type="radio" name="q2" value="2">
+      </td>
+      <td class="choice">
+        <input type="radio" name="q2" value="3">
+      </td>
+      <td class="choice">
+        <input type="radio" name="q2" value="4">
+      </td>
+
+      <td class="right-label">集中力がない</td>
+    </tr>
+
+    <!-- Q3 -->
+    <tr>
+      <td class="left-label">ぐっすり眠れた</td>
+
+      <td class="choice">
+        <input type="radio" name="q3" value="1" required>
+      </td>
+      <td class="choice">
+        <input type="radio" name="q3" value="2">
+      </td>
+      <td class="choice">
+        <input type="radio" name="q3" value="3">
+      </td>
+      <td class="choice">
+        <input type="radio" name="q3" value="4">
+      </td>
+
+      <td class="right-label">ぐっすり眠れなかった</td>
+    </tr>
+
+    <!-- Q4 -->
+    <tr>
+      <td class="left-label">解放感がある</td>
+
+      <td class="choice">
+        <input type="radio" name="q4" value="1" required>
+      </td>
+      <td class="choice">
+        <input type="radio" name="q4" value="2">
+      </td>
+      <td class="choice">
+        <input type="radio" name="q4" value="3">
+      </td>
+      <td class="choice">
+        <input type="radio" name="q4" value="4">
+      </td>
+
+      <td class="right-label">ストレスを感じる</td>
+    </tr>
+
+    <!-- Q5 -->
+    <tr>
+      <td class="left-label">身体がだるい</td>
+
+      <td class="choice">
+        <input type="radio" name="q5" value="1" required>
+      </td>
+      <td class="choice">
+        <input type="radio" name="q5" value="2">
+      </td>
+      <td class="choice">
+        <input type="radio" name="q5" value="3">
+      </td>
+      <td class="choice">
+        <input type="radio" name="q5" value="4">
+      </td>
+
+      <td class="right-label">身体がシャキッとしている</td>
+    </tr>
+
+    <!-- Q6 -->
+    <tr>
+      <td class="left-label">食欲がある</td>
+
+      <td class="choice">
+        <input type="radio" name="q6" value="1" required>
+      </td>
+      <td class="choice">
+        <input type="radio" name="q6" value="2">
+      </td>
+      <td class="choice">
+        <input type="radio" name="q6" value="3">
+      </td>
+      <td class="choice">
+        <input type="radio" name="q6" value="4">
+      </td>
+
+      <td class="right-label">食欲がない</td>
+    </tr>
+
+    <!-- Q7 -->
+    <tr>
+      <td class="left-label">寝つくまでにウトウトしていた状態が多かった</td>
+
+      <td class="choice">
+        <input type="radio" name="q7" value="1" required>
+      </td>
+      <td class="choice">
+        <input type="radio" name="q7" value="2">
+      </td>
+      <td class="choice">
+        <input type="radio" name="q7" value="3">
+      </td>
+      <td class="choice">
+        <input type="radio" name="q7" value="4">
+      </td>
+
+      <td class="right-label">寝つくまでにウトウトしていた状態が少なかった</td>
+    </tr>
+
+    <!-- Q8 -->
+    <tr>
+      <td class="left-label">頭がはっきりしている</td>
+
+      <td class="choice">
+        <input type="radio" name="q8" value="1" required>
+      </td>
+      <td class="choice">
+        <input type="radio" name="q8" value="2">
+      </td>
+      <td class="choice">
+        <input type="radio" name="q8" value="3">
+      </td>
+      <td class="choice">
+        <input type="radio" name="q8" value="4">
+      </td>
+
+      <td class="right-label">頭がボーとしている</td>
+    </tr>
+
+    <!-- Q9 -->
+    <tr>
+      <td class="left-label">悪夢が多かった</td>
+
+      <td class="choice">
+        <input type="radio" name="q9" value="1" required>
+      </td>
+      <td class="choice">
+        <input type="radio" name="q9" value="2">
+      </td>
+      <td class="choice">
+        <input type="radio" name="q9" value="3">
+      </td>
+      <td class="choice">
+        <input type="radio" name="q9" value="4">
+      </td>
+
+      <td class="right-label">悪夢は見なかった</td>
+    </tr>
+
+    <!-- Q10 -->
+    <tr>
+      <td class="left-label">寝つきがよかった</td>
+
+      <td class="choice">
+        <input type="radio" name="q10" value="1" required>
+      </td>
+      <td class="choice">
+        <input type="radio" name="q10" value="2">
+      </td>
+      <td class="choice">
+        <input type="radio" name="q10" value="3">
+      </td>
+      <td class="choice">
+        <input type="radio" name="q10" value="4">
+      </td>
+
+      <td class="right-label">寝つきが悪かった</td>
+    </tr>
+
+    <!-- Q11 -->
+    <tr>
+      <td class="left-label">不快な気分である</td>
+
+      <td class="choice">
+        <input type="radio" name="q11" value="1" required>
+      </td>
+      <td class="choice">
+        <input type="radio" name="q11" value="2">
+      </td>
+      <td class="choice">
+        <input type="radio" name="q11" value="3">
+      </td>
+      <td class="choice">
+        <input type="radio" name="q11" value="4">
+      </td>
+
+      <td class="right-label">さわやかな気分である</td>
+    </tr>
+
+    <!-- Q11 -->
+    <tr>
+      <td class="left-label">しょっちゅう夢をみた</td>
+
+      <td class="choice">
+        <input type="radio" name="q12" value="1" required>
+      </td>
+      <td class="choice">
+        <input type="radio" name="q12" value="2">
+      </td>
+      <td class="choice">
+        <input type="radio" name="q12" value="3">
+      </td>
+      <td class="choice">
+        <input type="radio" name="q12" value="4">
+      </td>
+
+      <td class="right-label">夢をみなかった</td>
+    </tr>
+
+    <!-- Q10 -->
+    <tr>
+      <td class="left-label">睡眠中にしょっちゅう目が覚めた</td>
+
+      <td class="choice">
+        <input type="radio" name="q13" value="1" required>
+      </td>
+      <td class="choice">
+        <input type="radio" name="q13" value="2">
+      </td>
+      <td class="choice">
+        <input type="radio" name="q13" value="3">
+      </td>
+      <td class="choice">
+        <input type="radio" name="q13" value="4">
+      </td>
+
+      <td class="right-label">睡眠中に目が覚めなかった</td>
+    </tr>
+
+    <!-- Q10 -->
+    <tr>
+      <td class="left-label">いますぐ，調査にテキパキと答えられる</td>
+
+      <td class="choice">
+        <input type="radio" name="q14" value="1" required>
+      </td>
+      <td class="choice">
+        <input type="radio" name="q14" value="2">
+      </td>
+      <td class="choice">
+        <input type="radio" name="q14" value="3">
+      </td>
+      <td class="choice">
+        <input type="radio" name="q14" value="4">
+      </td>
+
+      <td class="right-label">答えるのは，めんどうである</td>
+    </tr>
+
+    <!-- Q10 -->
+    <tr>
+      <td class="left-label">睡眠時間が長かった</td>
+
+      <td class="choice">
+        <input type="radio" name="q15" value="1" required>
+      </td>
+      <td class="choice">
+        <input type="radio" name="q15" value="2">
+      </td>
+      <td class="choice">
+        <input type="radio" name="q15" value="3">
+      </td>
+      <td class="choice">
+        <input type="radio" name="q15" value="4">
+      </td>
+
+      <td class="right-label">睡眠時間が短かった</td>
+    </tr>
+
+    <!-- Q10 -->
+    <tr>
+      <td class="left-label">眠りが浅かった</td>
+
+      <td class="choice">
+        <input type="radio" name="q16" value="1" required>
+      </td>
+      <td class="choice">
+        <input type="radio" name="q16" value="2">
+      </td>
+      <td class="choice">
+        <input type="radio" name="q16" value="3">
+      </td>
+      <td class="choice">
+        <input type="radio" name="q16" value="4">
+      </td>
+
+      <td class="right-label">眠りが深かった</td>
+    </tr>
+
+  </tbody>
+</table>
+
+<br>
+<button type="submit">送信</button>
+</form>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* ===== URLパラメータ ===== */
+  const params = new URLSearchParams(window.location.search);
+  const sid = params.get("sid");
+
+  if (sid) {
+    const input = document.getElementById("subject_id");
+    input.value = sid;
+    input.readOnly = true;
+  }
+
+  /* ===== 東京時間 ===== */
+  function toTokyoTimeString(date) {
+    const d = new Date(date.getTime() + 9 * 60 * 60 * 1000);
+    return d.toISOString().replace("T", " ").substring(0, 19);
+  }
+
+  const inputStartTime = toTokyoTimeString(new Date());
+
+  /* ===== submit ===== */
+  document.getElementById("osaForm").addEventListener("submit", e => {
+    e.preventDefault();
+
+    const answers = {};
+    new FormData(e.target).forEach((v, k) => {
+      if (k.startsWith("q")) answers[k] = Number(v);
+    });
+
+    const payload = {
+      timestamp_st: inputStartTime,
+      timestamp_fin: toTokyoTimeString(new Date()),
+      id: document.getElementById("subject_id").value,
+      rest_time: rest_time.value,
+      wake_time: wake_time.value,
+      sleep_time: sleep_time.value,
+      answers
+    };
+
+    console.log("送信データ", payload);
+
+    fetch("https://script.google.com/macros/s/AKfycbx6140na6GYyoIBe-2Inw_a9RI87gfsMbpJiPO0aUgZFPsQneMKCZTE_PdHogPXejhFVw/exec", {
+      method: "POST",
+      mode: "no-cors",
+      body: JSON.stringify(payload)
+    }).then(() => {
+      alert("送信が完了しました");
+      location.href = "https://202590-50-mgc001-hqlc.glide.page";
+    });
+  });
+
+});
+</script>
+
+</body>
+</html>
 
 
 
