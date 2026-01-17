@@ -462,6 +462,7 @@ tbody tr:last-child {
 
 <script>
 // ===== URLパラメータから被験者IDを取得 =====
+  document.addEventListener("DOMContentLoaded", function () {
 function getQueryParam(name) {
   const params = new URLSearchParams(window.location.search);
   return params.get(name);
@@ -474,7 +475,7 @@ if (subjectIdFromUrl) {
   subjectInput.value = subjectIdFromUrl;
   subjectInput.readOnly = true;
 }
-
+}
 
 // UTC → 東京時間に変換する関数（ブラウザ用）
 function toTokyoTimeString(date) {
@@ -543,6 +544,7 @@ document.getElementById("osaForm").addEventListener("submit", function(e) {
 
 </body>
 </html>
+
 
 
 
